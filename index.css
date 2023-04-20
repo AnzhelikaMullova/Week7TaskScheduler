@@ -13,3 +13,7 @@ input{
 .texttitle{
     font-size: 30px;
 }
+div{
+    display: flex;
+    flex-direction: column;
+}

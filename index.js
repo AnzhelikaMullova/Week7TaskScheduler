@@ -1,63 +1,53 @@
 document.getElementById("clearbutton").disabled = true; 
 const app = document.querySelector(".app").innerHTML="Нет задач";
 const newTask = document.createElement("div");
+document.getElementById("clearbutton");
 
 
+let totalsString = "";
 
  function addTask (i){
     //сначала проверяем условие пустой список задач или нет
 const app = document.querySelector(".app");
-if( app == "" )
+if( app.textContent === "" )
 {
-
 document.getElementById("cleanbutton").disabled = true; 
-const app = document.querySelector(".app").innerHTML="Нет задач";
-
+app.textContent = "Нет задач";
 }
 else{
-
 document.getElementById("clearbutton").disabled = false; 
-const app = document.querySelector(".app").innerHTML="";
-
+app.textContent = " ";
 }
-
-let totalsString = ''
-
-
-
-
-
-
-for(i=0; i<10 ; i++){
     const taskinput = document.getElementById("task").value; 
-    //    const app = document.querySelector(".app");
-   
-   
-    newTask.innerHTML=taskinput;
+    totalsString = totalsString + taskinput;
+    newTask.innerHTML=totalsString;
 
-    
     app.appendChild(newTask);
 
+    //создаем чекбокс
+    const newCheck = document.createElement("input");
+    newCheck.setAttribute("type", "checkbox");
+    app.appendChild(newCheck);
+
+
 }
- }
 
 
 function clearbutton(){
-    
-    if(newTask == !""){
-         newTask.remove();
-    
-    }
 
+    if(newTask.textContent !==""){
+    newTask.innerHTML=" ";
+    newCheck.innerHTML=" ";
+    }
 }
+
+
 
 
 
 
 
 let button = document.getElementById('addbutton');
-
 button.addEventListener('click', () => {
-
 addTask();
 });
