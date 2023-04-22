@@ -6,7 +6,7 @@ document.getElementById("clearbutton");
 
 let totalsString = "";
 
- function addTask (i){
+function addTask (i){
     //сначала проверяем условие пустой список задач или нет
 const app = document.querySelector(".app");
 if( app.textContent === "" )
@@ -21,13 +21,18 @@ app.textContent = " ";
     const taskinput = document.getElementById("task").value; 
     totalsString = totalsString + taskinput;
     newTask.innerHTML=totalsString;
+ 
 
     app.appendChild(newTask);
 
     //создаем чекбокс
-    const newCheck = document.createElement("input");
-    newCheck.setAttribute("type", "checkbox");
-    app.appendChild(newCheck);
+
+
+
+    const newTaskElement = `<div>${taskinput} <input type="checkbox"></div>`;
+    app.insertAdjacentHTML('beforeEnd', newTaskElement)
+   
+
 
 
 }
