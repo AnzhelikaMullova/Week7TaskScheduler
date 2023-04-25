@@ -1,58 +1,37 @@
-document.getElementById("clearbutton").disabled = true; 
-const app = document.querySelector(".app").innerHTML="Нет задач";
-const newTask = document.createElement("div");
-document.getElementById("clearbutton");
+document.getElementById('clearbutton').disabled = true;// делаем кновпку не активной
 
 
-let totalsString = "";
+const app = document.querySelector('.app');
+app.innerHTML = 'Нет задач';
+document.getElementById('clearbutton');
 
-function addTask (i){
-    //сначала проверяем условие пустой список задач или нет
-const app = document.querySelector(".app");
-if( app.textContent === "" )
-{
-document.getElementById("cleanbutton").disabled = true; 
-app.textContent = "Нет задач";
-}
-else{
-document.getElementById("clearbutton").disabled = false; 
-app.textContent = " ";
-}
-    const taskinput = document.getElementById("task").value; 
-    totalsString = totalsString + taskinput;
-    newTask.innerHTML=totalsString;
- 
+let isEmpty = true; // переменная "нет задач"
 
-    app.appendChild(newTask);
-
-    //создаем чекбокс
-
-
-
-    const newTaskElement = `<div>${taskinput} <input type="checkbox"></div>`;
-    app.insertAdjacentHTML('beforeEnd', newTaskElement)
-   
-
-
-
+function addTask() {
+  const input = document.getElementById('task');
+  const inputVal = input.value;  //берем значение из инпута
+  if (app.textContent === '') { // если задач нет то кнопка заблокирована и задач нет
+    document.getElementById('cleanbutton').disabled = true;
+    app.textContent = 'Нет задач';
+  } 
+  if(isEmpty) {//чтобы при добавлении в app он каждый раз не очищался мы проверяем условие
+    document.getElementById('clearbutton').disabled = false;
+    app.textContent = '';
+    isEmpty = false;
+  }
+  const newTaskElement = `<div>${inputVal} <input type="checkbox"></div>`;
+  app.insertAdjacentHTML('beforeEnd', newTaskElement);
+  input.value = "";
 }
 
-
-function clearbutton(){
-
-    if(newTask.textContent !==""){
-    newTask.innerHTML=" ";
-    newCheck.innerHTML=" ";
+function clearbutton() {
+    if (app.textContent !== '') {
+      app.innerHTML = 'Нет задач';
+      isEmpty = true;
     }
-}
-
-
-
-
-
-
+  }
 
 let button = document.getElementById('addbutton');
 button.addEventListener('click', () => {
-addTask();
+  addTask();
 });
